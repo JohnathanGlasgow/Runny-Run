@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 1174999496}
   - component: {fileID: 1174999498}
   - component: {fileID: 1174999499}
+  - component: {fileID: 1174999500}
   m_Layer: 5
   m_Name: Brain
   m_TagString: Untagged
@@ -633,7 +634,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -670,6 +671,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1174999500}
+        m_TargetAssemblyTypeName: ImagePressEffect, Assembly-CSharp
+        m_MethodName: OnButtonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1174999499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,6 +695,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc5ac871d33043d09bf8dd639d8db44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1174999500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174999494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af267c3a6bae44e6f8fc72da5c6dfde6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1174999496}
+  pressedScaleFactor: 0.95
+  pressedDuration: 0.01
 --- !u!1 &1982362565
 GameObject:
   m_ObjectHideFlags: 0

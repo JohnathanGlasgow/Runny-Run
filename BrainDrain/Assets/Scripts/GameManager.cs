@@ -24,5 +24,11 @@ public class GameManager : MonoBehaviour
         BrainCellText.text = BrainCells.ToString();
         // save the value of BrainCells to player prefs
         PlayerPrefs.SetString("BrainCells", BrainCells.ToString());
+
+        // check if r key is pressed and if so reset BrainCells to 86 billion
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            BrainCells = 86000000000L;
+        }
     }
 }

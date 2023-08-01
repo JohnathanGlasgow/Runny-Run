@@ -73,3 +73,6 @@ crashlytics-build.properties
 
 # .ds_store files
 **/.DS_Store
+
+# text mesh pro files
+TextMesh Pro/

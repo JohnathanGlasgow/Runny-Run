@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BrainCellText.text = BrainCells.ToString();
+        BrainCellText.text = BrainCells.ToString("N0");
         // save the value of BrainCells to player prefs
         PlayerPrefs.SetString("BrainCells", BrainCells.ToString());
 

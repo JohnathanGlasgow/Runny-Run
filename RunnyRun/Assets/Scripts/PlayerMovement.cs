@@ -46,6 +46,20 @@ public class PlayerMovement : MonoBehaviour
 			jumpTimer = 0;
 		}
 		#endregion
+		#region CROUCHING
+		
+		if (isGrounded && Input.GetButton("Crouch")) {
+			GFX.localScale = new Vector3(GFX.localScale.x, crouchHeight, GFX.localScale.z);
 
+			if (isJumping) {
+				GFX.localScale = new Vector3(GFX.localScale.x, 1f, GFX.localScale.z);
+			}
+		}
+
+		if (Input.GetButtonUp("Crouch")) {
+			GFX.localScale = new Vector3(GFX.localScale.x, 1f, GFX.localScale.z);
+		}
+
+		#endregion
     }
 }

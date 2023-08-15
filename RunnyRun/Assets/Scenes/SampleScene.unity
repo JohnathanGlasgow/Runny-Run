@@ -708,7 +708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1851204022}
-  GFX: {fileID: 0}
+  GFX: {fileID: 1628596627}
   jumpForce: 10
   groundLayer:
     serializedVersion: 2

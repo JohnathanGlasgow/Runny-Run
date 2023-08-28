@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour
     public float obstacleSpawnTime = 2f;
     public float obstacleSpeed = 1f;
 
-    private float timeUntilObstacleSpawn;
+    private float timeUntilObstacleSpawn = 2f;
 
     private void Update()
     {

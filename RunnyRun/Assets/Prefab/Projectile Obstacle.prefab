@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7340535272135132846}
   - component: {fileID: 5831489635874447571}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Projectile Obstacle
   m_TagString: Obstacle
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -70,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4904906208242496163}
   - component: {fileID: 7438977902871736727}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Projectile
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

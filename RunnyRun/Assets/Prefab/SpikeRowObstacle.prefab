@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7881588290639898816}
   - component: {fileID: 4041879598351493346}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spike (2)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4319613477864108095}
   - component: {fileID: 6846305335822775523}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spike
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4434730610888616133}
   - component: {fileID: 1851986987922895809}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpikeRowObstacle
   m_TagString: Obstacle
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -240,7 +240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5291412135697213674}
   - component: {fileID: 3458574372774288245}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spike (1)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

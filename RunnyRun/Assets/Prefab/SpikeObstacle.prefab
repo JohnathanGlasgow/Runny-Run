@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 845810547803255617}
   - component: {fileID: 8592252418776691894}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spike
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7148139690005745811}
   - component: {fileID: 6466994673834590602}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpikeObstacle
   m_TagString: Obstacle
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}

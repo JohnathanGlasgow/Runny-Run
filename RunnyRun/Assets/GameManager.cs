@@ -23,11 +23,18 @@ public class GameManager : MonoBehaviour
         {
             currentScore += Time.deltaTime;
         }
+
+        if (Input.GetKeyDown("k"))
+        {
+            isPlaying = true;
+        }
     }
+
 
     public void GameOver()
     {
         currentScore = 0;
+        isPlaying = false;
     }
     public string PrettyScore() => Mathf.RoundToInt(currentScore).ToString();
 

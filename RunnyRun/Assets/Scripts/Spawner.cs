@@ -4,15 +4,37 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject[] obstaclePrefabs;
+    public float obstacleSpawnTime = 2f;
+    public float obstacleSpeed = 1f;
+
+    private float timeUntilObstacleSpawn;
+
+    private void Update()
     {
-        
+        SpawnLoop();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SpawnLoop()
     {
-        
+        timeUntilObstacleSpawn += Time.deltaTime;
+
+        if (timeUntilObstacleSpawn >= obstacleSpawnTime)
+        {
+            Spawn();
+            timeUntilObstacleSpawn = 0f;
+        }
+    }
+
+    private void Spawn()
+    {
+        GameObject obstacleToSpawn = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
+
+        GameObject obstacle = Instantiate(obstacleToSpawn, transform.position, Quaternion.identity);
+
+        Rigidbody2D obstacleRB = obstacle.GetComponent<Rigidbody2D>();
+
+        obstacleRB.velocity = Vector2.left * obstacleSpeed;
     }
 }
+

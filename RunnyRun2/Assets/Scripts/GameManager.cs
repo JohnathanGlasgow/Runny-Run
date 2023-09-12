@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public float currentScore = 0f;
     public bool isPlaying = false;
     public UnityEvent onPlay;
+    public UnityEvent onGameOver;
 
     private void Update()
     {
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        onGameOver.Invoke();
         currentScore = 0;
         isPlaying = false;
     }

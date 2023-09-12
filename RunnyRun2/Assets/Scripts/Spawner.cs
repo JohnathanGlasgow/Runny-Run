@@ -12,7 +12,8 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.isPlaying) SpawnLoop();
+       // if (GameManager.Instance.isPlaying) SpawnLoop();
+       SpawnLoop();
     }
 
     private void SpawnLoop()

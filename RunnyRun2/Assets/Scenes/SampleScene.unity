@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 638995509}
   - component: {fileID: 638995508}
   - component: {fileID: 638995510}
+  - component: {fileID: 638995511}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -349,6 +350,18 @@ MonoBehaviour:
   groundDistance: 0.25
   jumpTime: 0.3
   crouchHeight: 0.5
+--- !u!114 &638995511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638995507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e168464adf743ef9dbf89881995e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1582457453
 GameObject:
   m_ObjectHideFlags: 0

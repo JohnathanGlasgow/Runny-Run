@@ -76,3 +76,6 @@ crashlytics-build.properties
 
 # text mesh pro files
 TextMesh Pro/
+
+# ignore game saves
+/[Aa]ssets/[Ss]aves/

@@ -596,7 +596,7 @@ MonoBehaviour:
   - {fileID: 4884785170225990534, guid: 1358ee1474a2a4485960433ffc6615a3, type: 3}
   obstacleParent: {fileID: 1935760118}
   obstacleSpawnTime: 3
-  obstacleSpawnTimeFactor: 0.1
+  obstacleSpawnTimeFactor: 0.983
   obstacleSpeed: 4
   obstacleSpeedFactor: 0.2
 --- !u!4 &474186013
@@ -608,10 +608,11 @@ Transform:
   m_GameObject: {fileID: 474186011}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.5, y: -4, z: 0}
+  m_LocalPosition: {x: 8.87, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1935760118}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
@@ -910,7 +911,7 @@ GameObject:
   - component: {fileID: 576017169}
   - component: {fileID: 576017172}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UICanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1014,8 +1015,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreUI: {fileID: 1695189089}
-  startMenuUi: {fileID: 1048880186}
-  gameOverUi: {fileID: 376066027}
+  startMenuUI: {fileID: 1048880186}
+  gameOverUI: {fileID: 376066027}
   gameOverScoreUI: {fileID: 278420780}
   gameOverHighScoreUI: {fileID: 368080117}
 --- !u!1 &638995507
@@ -1588,16 +1589,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c358b5e8708c74db19c334041484bd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScore: 0
-  isPlaying: 0
-  onPlay:
+  CurrentScore: 0
+  Data:
+    HighScore: 0
+  IsPlaying: 0
+  OnGameOver:
     m_PersistentCalls:
       m_Calls: []
-  onGameOver:
+  OnPlay:
     m_PersistentCalls:
       m_Calls: []
-  data:
-    highScore: 0
 --- !u!4 &1193661575
 Transform:
   m_ObjectHideFlags: 0
@@ -2686,12 +2687,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935760117}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 951.83856, y: 496.39642, z: -5.650869}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 942.96857, y: 500.39642, z: -5.650869}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 474186013}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1961595942
 GameObject:
@@ -2772,5 +2773,4 @@ SceneRoots:
   - {fileID: 474186013}
   - {fileID: 1193661575}
   - {fileID: 576017168}
-  - {fileID: 1935760118}
   - {fileID: 718693529}

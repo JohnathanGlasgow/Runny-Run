@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// This class is used for managing the UI.
+/// It is attached to the UICanvas game object in the scene.
+/// </summary>
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreUI;
-    [SerializeField] private GameObject startMenuUi;
-    [SerializeField] private GameObject gameOverUi;
+    [SerializeField] private GameObject startMenuUI;
+    [SerializeField] private GameObject gameOverUI;
     [SerializeField] private TextMeshProUGUI gameOverScoreUI;
     [SerializeField] private TextMeshProUGUI gameOverHighScoreUI;
     GameManager gm;
@@ -15,31 +19,30 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         gm = GameManager.Instance;
-        gm.onGameOver.AddListener(ActivateGameOverUI);  
+        gm.OnGameOver.AddListener(ActivateGameOverUI);  
     }
 
     public void PlayButtonHandler()
     {
         gm.StartGame();
-
     }
 
     public void ActivateGameOverUI()
     {
-        gameOverUi.SetActive(true);
-        gameOverScoreUI.text = "Score: " + gm.PrettyScore(gm.currentScore);
-        if (gm.currentScore > gm.data.highScore)
+        gameOverUI.SetActive(true);
+        gameOverScoreUI.text = "Score: " + gm.PrettyScore(gm.CurrentScore);
+        if (gm.CurrentScore > gm.Data.HighScore)
         {
             gameOverHighScoreUI.text = "New Highscore!";
         }
         else
         {
-        gameOverHighScoreUI.text = "Highscore: " + gm.PrettyScore(gm.data.highScore);
+            gameOverHighScoreUI.text = "Highscore: " + gm.PrettyScore(gm.Data.HighScore);
         }
     }
 
     private void OnGUI()
     {
-        scoreUI.text = gm.PrettyScore(gm.currentScore);
+        scoreUI.text = gm.PrettyScore(gm.CurrentScore);
     }
 }

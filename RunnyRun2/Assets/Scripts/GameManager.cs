@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// This class is used for managing the game state.
+/// It is a singleton class, meaning that there can only be one instance of it.
+/// It is used in conjunction with the UIManager class.
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     #region Singleton
@@ -15,46 +20,46 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public float currentScore = 0f;
-    public bool isPlaying = false;
-    public UnityEvent onPlay;
-    public UnityEvent onGameOver;
-    public Data data;
+    public float CurrentScore;
+    public Data Data;
+    public bool IsPlaying = false;
+    public UnityEvent OnGameOver;
+    public UnityEvent OnPlay;
 
+    # region MonoBehaviour
     private void Start()
     {
         string loadedData = SaveSystem.Load("save");
-        // data = new Data();
-
-        data = (loadedData != null) ? JsonUtility.FromJson<Data>(loadedData) : new Data();
+        Data = (loadedData != null) ? JsonUtility.FromJson<Data>(loadedData) : new Data();
     }
+
     private void Update()
     {
-        if (isPlaying)
+        if (IsPlaying)
         {
-            currentScore += Time.deltaTime;
+            CurrentScore += Time.deltaTime;
         }
+    }
+    #endregion
+
+    public void GameOver()
+    {
+        if (CurrentScore > Data.HighScore)
+        {
+            Data.HighScore = CurrentScore;
+            SaveSystem.Save("save", Data);
+        }
+        IsPlaying = false;
+        OnGameOver.Invoke();
     }
 
     public void StartGame()
     {
-        onPlay.Invoke();
-        isPlaying = true;
-        currentScore = 0;
+        OnPlay.Invoke();
+        IsPlaying = true;
+        CurrentScore = 0;
     }   
 
-    public void GameOver()
-    {
-        
-        if (currentScore > data.highScore)
-        {
-            data.highScore = currentScore;
-            SaveSystem.Save("save", data);
-        }
-        isPlaying = false;
-        onGameOver.Invoke();
-    }
     public string PrettyScore(float score) => Mathf.RoundToInt(score).ToString();
-
 }
 

@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
+	/// <summary>
+	/// This class is used for detecting collisions between the player and obstacles.
+	/// It is attached to the Player game object.
+	/// </summary>
+	
 	private void Start() {
-		GameManager.Instance.onPlay.AddListener(activatePlayer);
+		GameManager.Instance.OnPlay.AddListener(activatePlayer);
 	}
 
 	private void activatePlayer() {

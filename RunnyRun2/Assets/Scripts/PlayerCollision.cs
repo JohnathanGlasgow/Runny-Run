@@ -19,6 +19,8 @@ public class PlayerCollision : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D other) {
 		if (other.transform.tag == "Obstacle") {
+			// log the collision
+			Debug.Log("Player collided with obstacle");
 			gameObject.SetActive(false);
             GameManager.Instance.GameOver();
 		}

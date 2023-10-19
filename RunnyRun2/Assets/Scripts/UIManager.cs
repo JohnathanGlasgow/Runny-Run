@@ -14,12 +14,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private TextMeshProUGUI gameOverScoreUI;
     [SerializeField] private TextMeshProUGUI gameOverHighScoreUI;
+    [SerializeField] private TextMeshProUGUI startMenuHighScoreUI;
     GameManager gm;
 
     private void Start()
     {
         gm = GameManager.Instance;
         gm.OnGameOver.AddListener(ActivateGameOverUI);  
+        startMenuHighScoreUI.text = "Highscore: " + gm.PrettyScore(gm.Data.HighScore);
     }
 
     public void PlayButtonHandler()
@@ -29,6 +31,7 @@ public class UIManager : MonoBehaviour
 
     public void ActivateGameOverUI()
     {
+        startMenuHighScoreUI.text = "Highscore: " + gm.PrettyScore(gm.Data.HighScore);
         gameOverUI.SetActive(true);
         gameOverScoreUI.text = "Score: " + gm.PrettyScore(gm.CurrentScore);
         if (gm.CurrentScore > gm.Data.HighScore)

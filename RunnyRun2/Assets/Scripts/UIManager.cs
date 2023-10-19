@@ -9,6 +9,13 @@ using TMPro;
 /// </summary>
 public class UIManager : MonoBehaviour
 {
+    #region Singleton
+    public static UIManager Instance;
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+    }
+    #endregion
     [SerializeField] private TextMeshProUGUI scoreUI;
     [SerializeField] private GameObject startMenuUI;
     [SerializeField] private GameObject gameOverUI;
@@ -19,9 +26,11 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        // logout "calling UI start"
+        Debug.Log("calling UI start");
         gm = GameManager.Instance;
         gm.OnGameOver.AddListener(ActivateGameOverUI);  
-        startMenuHighScoreUI.text = "Highscore: " + gm.PrettyScore(gm.Data.HighScore);
+        //startMenuHighScoreUI.text = "Highscore: " + gm.PrettyScore(gm.Data.HighScore);
     }
 
     public void PlayButtonHandler()
@@ -44,8 +53,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void UpdateStartMenuHighScore()
+    {
+        startMenuHighScoreUI.text = "Highscore: " + gm.PrettyScore(gm.Data.HighScore);
+    }
+
     private void OnGUI()
     {
         scoreUI.text = gm.PrettyScore(gm.CurrentScore);
     }
+
 }

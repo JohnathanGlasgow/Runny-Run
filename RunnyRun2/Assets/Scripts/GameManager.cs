@@ -26,11 +26,15 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnGameOver;
     public UnityEvent OnPlay;
 
+    private UIManager uiManager;
+
     # region MonoBehaviour
     private void Start()
     {
+        uiManager = UIManager.Instance;
         string loadedData = SaveSystem.Load("save");
         Data = (loadedData != null) ? JsonUtility.FromJson<Data>(loadedData) : new Data();
+        uiManager.UpdateStartMenuHighScore();
     }
 
     private void Update()

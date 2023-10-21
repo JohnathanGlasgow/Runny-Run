@@ -33,13 +33,18 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Update()
     {
+        // see if there overlap between player and ground layer
         isGrounded = Physics2D.OverlapCircle(feetPos.position, groundDistance, groundLayer);
-        if (isGrounded && jumpStart == false)
+
+        if ((isGrounded == true) && (jumpStart == false) && !(jumpTimer < jumpTime))
         {
             animator.SetBool("IsJumping", false);
         }
+        if (jumpTimer < jumpTime)
+        {
+            jumpTimer += Time.deltaTime; // Increment the jump timer.
+        }
 
-        
 
         if (isJumping)
         {
@@ -47,7 +52,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 // The player is still holding the jump button, and the jump time hasn't exceeded the limit.
                 rb.velocity = Vector2.up * jumpForce; // Apply additional jump force.
-                jumpTimer += Time.deltaTime; // Increment the jump timer.
+
             }
             else
             {
@@ -57,6 +62,27 @@ public class PlayerMovementController : MonoBehaviour
             }
         }
 
+    }
+
+    public void OnInteraction(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                if (isGrounded)
+                {
+                    jumpTimer = 0;
+                    isJumping = true;
+                    jumpStart = true;
+                    animator.SetBool("IsJumping", true);
+                    rb.velocity = Vector2.up * jumpForce;
+                }
+                break;
+            case InputActionPhase.Canceled:
+                isJumping = false;
+                jumpStart = false;
+                break;
+        }
     }
 
     private void onGameStart()
@@ -73,26 +99,7 @@ public class PlayerMovementController : MonoBehaviour
         animator.SetBool("IsRunning", false);
     }
 
-    public void OnInteraction(InputAction.CallbackContext context)
-    {
-        switch (context.phase)
-        {
-            case InputActionPhase.Started:
-                if (isGrounded)
-                {
-                    isJumping = true;
-                    jumpStart = true;
-                    animator.SetBool("IsJumping", true);
-                    rb.velocity = Vector2.up * jumpForce; // Apply an initial jump force.
-                }
-                break;
-            case InputActionPhase.Canceled:
-                isJumping = false;
-                jumpTimer = 0;
-                jumpStart = false;
-                break;
-        }
-    }
+
 
 
 

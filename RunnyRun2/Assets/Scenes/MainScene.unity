@@ -1807,6 +1807,7 @@ MonoBehaviour:
   - {fileID: 7279003999673194491, guid: ae7e6a363d5e74177a38bfaff73f0a7a, type: 3}
   - {fileID: 5241972158656893170, guid: 20319a3bb4e8a47a4938ad7fa5b440bc, type: 3}
   - {fileID: 4884785170225990534, guid: 1358ee1474a2a4485960433ffc6615a3, type: 3}
+  - {fileID: 7279003999673194491, guid: a55b0683860b34097af31f48eb55ae08, type: 3}
   obstacleParent: {fileID: 1935760118}
   obstacleSpawnTime: 3
   obstacleSpawnTimeFactor: 0.1
@@ -5606,7 +5607,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 3576233466
-  m_fontColor: {r: 0.9810414, g: 0.990566, b: 0.15686275, a: 0.8352941}
+  m_fontColor: {r: 0.9810414, g: 0.990566, b: 0.15686275, a: 0.9490196}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

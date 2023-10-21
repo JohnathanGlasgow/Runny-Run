@@ -17,7 +17,6 @@ public class PlayerMovementController : MonoBehaviour
     private bool isGrounded = false;      // Flag to check if the player is grounded.
     private bool isJumping = false;       // Flag to check if the player is in a jump state.
     private float jumpTimer;              // Timer to control the maximum jump time.
-    private bool jumpStart;
     private GameManager gameManager;
     private InputAction jumpAction;
 
@@ -36,32 +35,26 @@ public class PlayerMovementController : MonoBehaviour
         // see if there overlap between player and ground layer
         isGrounded = Physics2D.OverlapCircle(feetPos.position, groundDistance, groundLayer);
 
-        if ((isGrounded == true) && (jumpStart == false) && !(jumpTimer < jumpTime))
+        // the player is on or near the ground and the jumptimer has exceeded the jump time limit
+        if ((isGrounded == true) && (jumpTimer >= jumpTime))
         {
+            // stop the jump animation
             animator.SetBool("IsJumping", false);
         }
-        if (jumpTimer < jumpTime)
+        else if (jumpTimer < jumpTime)
         {
             jumpTimer += Time.deltaTime; // Increment the jump timer.
-        }
-
-
-        if (isJumping)
-        {
-            if (jumpTimer < jumpTime)
+            if (isJumping == true)
             {
                 // The player is still holding the jump button, and the jump time hasn't exceeded the limit.
                 rb.velocity = Vector2.up * jumpForce; // Apply additional jump force.
-
-            }
-            else
-            {
-                // Jump time limit has been reached, so the player should stop jumping.
-                isJumping = false;
-                jumpStart = false;
             }
         }
-
+        else
+        {
+            // Jump time limit has been reached, so the player should stop jumping.
+            isJumping = false;
+        }
     }
 
     public void OnInteraction(InputAction.CallbackContext context)
@@ -73,14 +66,12 @@ public class PlayerMovementController : MonoBehaviour
                 {
                     jumpTimer = 0;
                     isJumping = true;
-                    jumpStart = true;
                     animator.SetBool("IsJumping", true);
                     rb.velocity = Vector2.up * jumpForce;
                 }
                 break;
             case InputActionPhase.Canceled:
                 isJumping = false;
-                jumpStart = false;
                 break;
         }
     }
@@ -98,11 +89,6 @@ public class PlayerMovementController : MonoBehaviour
         playerInput.enabled = false;
         animator.SetBool("IsRunning", false);
     }
-
-
-
-
-
 }
 
 

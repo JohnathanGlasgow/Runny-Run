@@ -48,7 +48,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: GronicBody
+    path: PlayerSpriteGroup/GronicBody
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -82,7 +82,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 'GronicBackEye '
+    path: PlayerSpriteGroup/GronicBackEye
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -116,7 +116,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: GronicEye
+    path: PlayerSpriteGroup/GronicEye
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -211,7 +211,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: GronicBody
+    path: PlayerSpriteGroup/GronicBody
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -250,7 +250,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: GronicBody
+    path: PlayerSpriteGroup/GronicBody
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -289,7 +289,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: GronicBody
+    path: PlayerSpriteGroup/GronicBody
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -328,7 +328,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: 'GronicBackEye '
+    path: PlayerSpriteGroup/GronicBackEye
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -367,7 +367,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: 'GronicBackEye '
+    path: PlayerSpriteGroup/GronicBackEye
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -406,7 +406,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: 'GronicBackEye '
+    path: PlayerSpriteGroup/GronicBackEye
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -445,7 +445,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: GronicEye
+    path: PlayerSpriteGroup/GronicEye
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -484,7 +484,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: GronicEye
+    path: PlayerSpriteGroup/GronicEye
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -523,7 +523,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: GronicEye
+    path: PlayerSpriteGroup/GronicEye
     classID: 4
     script: {fileID: 0}
     flags: 0

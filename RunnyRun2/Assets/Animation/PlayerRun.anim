@@ -57,7 +57,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: GronicFrontLeg
+    path: PlayerSpriteGroup/GronicFrontLeg
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -100,7 +100,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: GronicBackLeg
+    path: PlayerSpriteGroup/GronicBackLeg
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -152,7 +152,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: GronicBody
+    path: PlayerSpriteGroup/GronicBody
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -204,7 +204,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: GronicEye
+    path: PlayerSpriteGroup/GronicEye
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -256,7 +256,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 'GronicBackEye '
+    path: PlayerSpriteGroup/GronicBackEye
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -268,7 +268,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 574318360
+      path: 126288498
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -277,7 +277,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 889770509
+      path: 3871283391
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -286,7 +286,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 944517836
+      path: 2346632059
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -295,7 +295,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 4115327801
+      path: 29455041
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -304,7 +304,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3454716982
+      path: 3776388929
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -378,7 +378,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: GronicFrontLeg
+    path: PlayerSpriteGroup/GronicFrontLeg
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -426,7 +426,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: GronicFrontLeg
+    path: PlayerSpriteGroup/GronicFrontLeg
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -474,7 +474,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: GronicFrontLeg
+    path: PlayerSpriteGroup/GronicFrontLeg
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -522,7 +522,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: GronicBackLeg
+    path: PlayerSpriteGroup/GronicBackLeg
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -570,7 +570,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: GronicBackLeg
+    path: PlayerSpriteGroup/GronicBackLeg
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -618,7 +618,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: GronicBackLeg
+    path: PlayerSpriteGroup/GronicBackLeg
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -675,7 +675,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: GronicBody
+    path: PlayerSpriteGroup/GronicBody
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -732,7 +732,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: GronicBody
+    path: PlayerSpriteGroup/GronicBody
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -789,7 +789,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: GronicBody
+    path: PlayerSpriteGroup/GronicBody
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -846,7 +846,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: GronicEye
+    path: PlayerSpriteGroup/GronicEye
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -903,7 +903,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: GronicEye
+    path: PlayerSpriteGroup/GronicEye
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -960,7 +960,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: GronicEye
+    path: PlayerSpriteGroup/GronicEye
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1017,7 +1017,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: 'GronicBackEye '
+    path: PlayerSpriteGroup/GronicBackEye
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1074,7 +1074,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: 'GronicBackEye '
+    path: PlayerSpriteGroup/GronicBackEye
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1131,7 +1131,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: 'GronicBackEye '
+    path: PlayerSpriteGroup/GronicBackEye
     classID: 4
     script: {fileID: 0}
     flags: 0

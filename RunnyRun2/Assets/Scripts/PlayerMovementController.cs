@@ -17,6 +17,8 @@ public class PlayerMovementController : MonoBehaviour
     private bool isGrounded = false;      // Flag to check if the player is grounded.
     private bool isJumping = false;       // Flag to check if the player is in a jump state.
     private float jumpTimer;              // Timer to control the maximum jump time.
+
+    private bool jumpComplete;
     private GameManager gameManager;
     private InputAction jumpAction;
 
@@ -40,6 +42,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             // stop the jump animation
             animator.SetBool("IsJumping", false);
+            jumpComplete = true;
         }
         else if (jumpTimer < jumpTime)
         {
@@ -62,8 +65,9 @@ public class PlayerMovementController : MonoBehaviour
         switch (context.phase)
         {
             case InputActionPhase.Started:
-                if (isGrounded)
+                if (isGrounded && jumpComplete)
                 {
+                    jumpComplete = false;
                     jumpTimer = 0;
                     isJumping = true;
                     animator.SetBool("IsJumping", true);

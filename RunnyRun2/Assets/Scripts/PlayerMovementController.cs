@@ -11,14 +11,14 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform feetPos;
-    [SerializeField] private float groundDistance = 0.25f;
+    [SerializeField] private float groundDistance = 0.1f;
     [SerializeField] private float jumpTime = 0.3f;
 
     private bool isGrounded = false;      // Flag to check if the player is grounded.
     private bool isJumping = false;       // Flag to check if the player is in a jump state.
     private float jumpTimer;              // Timer to control the maximum jump time.
+    private bool jumpStart;
     private GameManager gameManager;
-
     private InputAction jumpAction;
 
     // listen for onplay event from game manager
@@ -31,9 +31,15 @@ public class PlayerMovementController : MonoBehaviour
         gameManager.OnGameOver.AddListener(onGameOver);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, groundDistance, groundLayer);
+        if (isGrounded && jumpStart == false)
+        {
+            animator.SetBool("IsJumping", false);
+        }
+
+        
 
         if (isJumping)
         {
@@ -47,6 +53,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 // Jump time limit has been reached, so the player should stop jumping.
                 isJumping = false;
+                jumpStart = false;
             }
         }
 
@@ -68,28 +75,26 @@ public class PlayerMovementController : MonoBehaviour
 
     public void OnInteraction(InputAction.CallbackContext context)
     {
-        // log this
-        Debug.Log("OnInteraction called");
-
         switch (context.phase)
         {
             case InputActionPhase.Started:
-                Debug.Log("Interaction started");
                 if (isGrounded)
                 {
                     isJumping = true;
+                    jumpStart = true;
+                    animator.SetBool("IsJumping", true);
                     rb.velocity = Vector2.up * jumpForce; // Apply an initial jump force.
                 }
                 break;
             case InputActionPhase.Canceled:
-                Debug.Log("Interaction canceled");
-                // log this
-                Debug.Log("Jumping false");
                 isJumping = false;
                 jumpTimer = 0;
+                jumpStart = false;
                 break;
         }
     }
+
+
 
 }
 

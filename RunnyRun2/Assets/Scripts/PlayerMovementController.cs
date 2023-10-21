@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
+    // player input component
+    [SerializeField] private PlayerInput playerInput;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform feetPos;
@@ -14,12 +17,21 @@ public class PlayerMovementController : MonoBehaviour
     private bool isGrounded = false;      // Flag to check if the player is grounded.
     private bool isJumping = false;       // Flag to check if the player is in a jump state.
     private float jumpTimer;              // Timer to control the maximum jump time.
-
+    private GameManager gameManager;
 
     private InputAction jumpAction;
 
+    // listen for onplay event from game manager
+    // when onplay event is called, set the animator bool "isRunning" to true
+    // when ongameover event is called, set the animator bool "isRunning" to false
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+        gameManager.OnPlay.AddListener(onGameStart);
+        gameManager.OnGameOver.AddListener(onGameOver);
+    }
 
-    private void Update()
+    private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, groundDistance, groundLayer);
 
@@ -40,6 +52,19 @@ public class PlayerMovementController : MonoBehaviour
 
     }
 
+    private void onGameStart()
+    {
+        // enable player input
+        playerInput.enabled = true;
+        animator.SetBool("IsRunning", true);
+    }
+
+    private void onGameOver()
+    {
+        // disable player input
+        playerInput.enabled = false;
+        animator.SetBool("IsRunning", false);
+    }
 
     public void OnInteraction(InputAction.CallbackContext context)
     {

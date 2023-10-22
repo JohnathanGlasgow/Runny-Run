@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     {
         if (IsPlaying)
         {
-            CurrentScore += Time.deltaTime;
+            //CurrentScore += Time.deltaTime;
         }
     }
     #endregion

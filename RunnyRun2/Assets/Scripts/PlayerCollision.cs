@@ -27,14 +27,14 @@ public class PlayerCollision : MonoBehaviour
 			gameObject.SetActive(false);
             GameManager.Instance.GameOver();
 		}
-		else
-		{
-			Debug.Log("Collision with " + other.transform.tag);
-		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log("Collision with " + other.transform.tag);
+		if (other.transform.tag == "Ring") {
+			// destroy ring and add score
+			Destroy(other.gameObject);
+			GameManager.Instance.CurrentScore += 1;
+		}
 	}
     private void resetPlayer()
     {

@@ -17,7 +17,7 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private float obstacleSpeed = 4f;
     [SerializeField][Range(0, 1)] private float obstacleSpeedFactor = 0.2f;
-    private float factoredObstacleSpeed;
+    public float FactoredObstacleSpeed { get; private set;}
 
     
     private float timeAlive;
@@ -65,7 +65,7 @@ public class Spawner : MonoBehaviour
     private void CalculateFactors()
     {
         factoredObstacleSpawnTime = obstacleSpawnTime / Mathf.Pow(timeAlive, obstacleSpawnTimeFactor);
-        factoredObstacleSpeed = obstacleSpeed * Mathf.Pow(timeAlive, obstacleSpeedFactor);
+        FactoredObstacleSpeed = obstacleSpeed * Mathf.Pow(timeAlive, obstacleSpeedFactor);
 
     }
 
@@ -73,12 +73,14 @@ public class Spawner : MonoBehaviour
     {
         timeAlive = 1f;
         factoredObstacleSpawnTime = obstacleSpawnTime;
-        factoredObstacleSpeed = obstacleSpeed;
+        FactoredObstacleSpeed = obstacleSpeed;
 
     }
 
     private void Spawn()
     {
+        if (FactoredObstacleSpeed < 5f) return;
+
         GameObject obstacleToSpawn = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
 
         GameObject obstacle = Instantiate(obstacleToSpawn, transform.position, Quaternion.identity);
@@ -86,7 +88,7 @@ public class Spawner : MonoBehaviour
 
         Rigidbody2D obstacleRB = obstacle.GetComponent<Rigidbody2D>();
 
-        obstacleRB.velocity = Vector2.left * factoredObstacleSpeed;
+        obstacleRB.velocity = Vector2.left * FactoredObstacleSpeed;
     }
 }
 

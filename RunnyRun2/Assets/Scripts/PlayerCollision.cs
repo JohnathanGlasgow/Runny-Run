@@ -27,6 +27,14 @@ public class PlayerCollision : MonoBehaviour
 			gameObject.SetActive(false);
             GameManager.Instance.GameOver();
 		}
+		else
+		{
+			Debug.Log("Collision with " + other.transform.tag);
+		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D other) {
+		Debug.Log("Collision with " + other.transform.tag);
 	}
     private void resetPlayer()
     {

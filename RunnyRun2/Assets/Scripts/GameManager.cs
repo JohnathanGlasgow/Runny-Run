@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null) Instance = this;
     }
     #endregion
-
+    [SerializeField] private Animator animator;
     public float CurrentScore;
     public Data Data;
     public bool IsPlaying = false;
@@ -62,6 +62,9 @@ public class GameManager : MonoBehaviour
         OnPlay.Invoke();
         IsPlaying = true;
         CurrentScore = 0;
+        animator.SetBool("IsRunning", true);
+        // log out the animator bool
+        Debug.Log("animator.IsRunning: " + animator.GetBool("IsRunning"));
     }   
 
     public string PrettyScore(float score) => Mathf.RoundToInt(score).ToString();

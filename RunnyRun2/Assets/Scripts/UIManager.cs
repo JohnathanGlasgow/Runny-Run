@@ -26,11 +26,8 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        // logout "calling UI start"
-        Debug.Log("calling UI start");
         gm = GameManager.Instance;
         gm.OnGameOver.AddListener(ActivateGameOverUI);  
-        //startMenuHighScoreUI.text = "Highscore: " + gm.PrettyScore(gm.Data.HighScore);
     }
 
     public void PlayButtonHandler()

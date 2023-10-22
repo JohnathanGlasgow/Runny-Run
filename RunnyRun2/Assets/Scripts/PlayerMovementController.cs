@@ -82,16 +82,24 @@ public class PlayerMovementController : MonoBehaviour
 
     private void onGameStart()
     {
+        // log out this call
+        Debug.Log("onGameStart called");
         // enable player input
         playerInput.enabled = true;
-        animator.SetBool("IsRunning", true);
+        // animator.SetBool("IsRunning", true);
+        // // log out the animator bool
+        // Debug.Log("animator.IsRunning: " + animator.GetBool("IsRunning"));
     }
 
     private void onGameOver()
     {
+        // log out this call
+        Debug.Log("onGameOver called");
         // disable player input
         playerInput.enabled = false;
         animator.SetBool("IsRunning", false);
+        // log out the animator bool
+        Debug.Log("animator.IsRunning: " + animator.GetBool("IsRunning"));
     }
 }
 

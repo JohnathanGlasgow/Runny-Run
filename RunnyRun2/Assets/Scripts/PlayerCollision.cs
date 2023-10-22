@@ -24,23 +24,13 @@ public class PlayerCollision : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D other) {
 		if (other.transform.tag == "Obstacle") {
-			// log the collision
 			gameObject.SetActive(false);
             GameManager.Instance.GameOver();
 		}
 	}
     private void resetPlayer()
     {
-        // log out  the call
-        Debug.Log("resetPlayer called");
-        // set playerSpriteGroup.transform.rotation 0, 0, 0
-		// logout the current rotation
-		Debug.Log("current rotation: " + playerSpriteGroup.transform.localRotation);
         playerSpriteGroup.localRotation = Quaternion.identity;
-		// logout the new rotation
-		Debug.Log("new rotation: " + playerSpriteGroup.transform.localRotation);
-
-		// set this.transform.position to initPosition
 		transform.position = initPosition;
     }
 }

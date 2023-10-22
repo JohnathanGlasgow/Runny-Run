@@ -63,8 +63,6 @@ public class GameManager : MonoBehaviour
         IsPlaying = true;
         CurrentScore = 0;
         animator.SetBool("IsRunning", true);
-        // log out the animator bool
-        Debug.Log("animator.IsRunning: " + animator.GetBool("IsRunning"));
     }   
 
     public string PrettyScore(float score) => Mathf.RoundToInt(score).ToString();

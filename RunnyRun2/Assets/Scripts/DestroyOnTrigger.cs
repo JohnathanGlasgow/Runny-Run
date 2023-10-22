@@ -9,8 +9,6 @@ public class DestroyOnTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // log out the tag of the object that collided with this object
-        Debug.Log(other.tag);
         if (other.CompareTag(tagFilter))
         {
             // if this object has the ring tag, destroy it

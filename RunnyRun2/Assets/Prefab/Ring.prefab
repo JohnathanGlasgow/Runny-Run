@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2191081916146182350}
   - component: {fileID: 842362647808697432}
   - component: {fileID: 8787605590201266660}
+  - component: {fileID: 5171251430734480047}
   m_Layer: 8
   m_Name: Ring
   m_TagString: Ring
@@ -113,6 +114,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5171251430734480047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5337234046715585652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129488fcc02a545b8ab7e1546382cc92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagFilter: Despawner
 --- !u!1001 &1449217721071654109
 PrefabInstance:
   m_ObjectHideFlags: 0

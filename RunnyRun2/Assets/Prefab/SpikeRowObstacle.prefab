@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1854183068992162268}
   - component: {fileID: 8018204431591021030}
   - component: {fileID: 218071007174298489}
+  - component: {fileID: 3293060496748393043}
   m_Layer: 8
   m_Name: Spike (2)
   m_TagString: Obstacle
@@ -134,6 +135,19 @@ PolygonCollider2D:
       - {x: 0.84698784, y: -1.0054727}
       - {x: 0.4814964, y: -0.074584365}
   m_UseDelaunayMesh: 0
+--- !u!114 &3293060496748393043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622355723625065616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129488fcc02a545b8ab7e1546382cc92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagFilter: Despawner
 --- !u!1 &3645164167492238920
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +159,7 @@ GameObject:
   - component: {fileID: 1841610809272869208}
   - component: {fileID: 1649512912378772203}
   - component: {fileID: 8509844456557069704}
+  - component: {fileID: 6907573769163201552}
   m_Layer: 8
   m_Name: Spike (1)
   m_TagString: Obstacle
@@ -268,6 +283,19 @@ PolygonCollider2D:
       - {x: 0.84698784, y: -1.0054727}
       - {x: 0.4814964, y: -0.074584365}
   m_UseDelaunayMesh: 0
+--- !u!114 &6907573769163201552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3645164167492238920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129488fcc02a545b8ab7e1546382cc92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagFilter: Despawner
 --- !u!1 &4884785170225990534
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +369,7 @@ GameObject:
   - component: {fileID: 449239546468871346}
   - component: {fileID: 4687019905259195132}
   - component: {fileID: 4239363214154540469}
+  - component: {fileID: 2722806721690337025}
   m_Layer: 8
   m_Name: Spike
   m_TagString: Obstacle
@@ -464,3 +493,16 @@ PolygonCollider2D:
       - {x: 0.84698784, y: -1.0054727}
       - {x: 0.4814964, y: -0.074584365}
   m_UseDelaunayMesh: 0
+--- !u!114 &2722806721690337025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8416931349167896535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129488fcc02a545b8ab7e1546382cc92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagFilter: Despawner

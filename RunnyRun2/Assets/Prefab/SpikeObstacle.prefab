@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 845810547803255617}
   - component: {fileID: 8592252418776691894}
   - component: {fileID: 757024713951090105}
+  - component: {fileID: 794183236304682036}
   m_Layer: 8
   m_Name: Spike
   m_TagString: Obstacle
@@ -134,6 +135,19 @@ PolygonCollider2D:
       - {x: 0.84698784, y: -1.0054727}
       - {x: 0.4814964, y: -0.074584365}
   m_UseDelaunayMesh: 0
+--- !u!114 &794183236304682036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572699494623142128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129488fcc02a545b8ab7e1546382cc92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagFilter: Despawner
 --- !u!1 &5241972158656893170
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,13 +49,14 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        OnGameOver.Invoke();
         if (CurrentScore > Data.HighScore)
         {
             Data.HighScore = CurrentScore;
             SaveSystem.Save("save", Data);
         }
         IsPlaying = false;
-        OnGameOver.Invoke();
+        
     }
 
     public void StartGame()

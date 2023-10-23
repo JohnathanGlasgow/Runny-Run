@@ -13,7 +13,7 @@ public class RingSpawner : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.OnGameOver.AddListener(ClearRings);
+        GameManager.Instance.OnPlay.AddListener(ClearRings);
     }
     // Update is called once per frame
     void Update()
@@ -61,6 +61,14 @@ public class RingSpawner : MonoBehaviour
         foreach(Transform child in ringParent)
         {
             Destroy(child.gameObject);
+        }
+    }
+
+    public void PauseRings()
+    {
+        foreach(Transform child in ringParent)
+        {
+            child.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 }

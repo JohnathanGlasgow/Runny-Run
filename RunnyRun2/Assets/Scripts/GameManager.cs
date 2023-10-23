@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject player;
     public float CurrentScore;
     public Data Data;
     public bool IsPlaying = false;
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        player.SetActive(true);
         OnPlay.Invoke();
         IsPlaying = true;
         CurrentScore = 0;

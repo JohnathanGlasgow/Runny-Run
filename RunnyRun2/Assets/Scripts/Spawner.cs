@@ -17,7 +17,7 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private float obstacleSpeed = 4f;
     [SerializeField][Range(0, 1)] private float obstacleSpeedFactor = 0.2f;
-    public float FactoredObstacleSpeed { get; private set;}
+    public float FactoredObstacleSpeed { get; set;}
 
     
     private float timeAlive;
@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnGameOver.AddListener(ClearObstacles);
+        GameManager.Instance.OnPlay.AddListener(ClearObstacles);
         GameManager.Instance.OnPlay.AddListener(resetFactors);
 
         timeUntilObstacleSpawn = obstacleSpawnTime;
@@ -51,6 +51,15 @@ public class Spawner : MonoBehaviour
         {
             Spawn();
             timeUntilObstacleSpawn = 0f;
+        }
+    }
+
+    public void PauseObstacles()
+    {
+        FactoredObstacleSpeed = 0f;
+        foreach(Transform child in obstacleParent)
+        {
+            child.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 

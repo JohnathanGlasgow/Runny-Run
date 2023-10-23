@@ -1,44 +1,84 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerCollision : MonoBehaviour
 {
-	/// <summary>
-	/// This class is used for detecting collisions between the player and obstacles.
-	/// It is attached to the Player game object.
-	/// </summary>
-	
-    [SerializeField] private Transform playerSpriteGroup;
-	private Vector3 initPosition;
-	private void Start() {
-		initPosition = transform.position;
-		GameManager.Instance.OnPlay.AddListener(activatePlayer);
-	}
+    /// <summary>
+    /// This class is used for detecting collisions between the player and obstacles.
+    /// It is attached to the Player game object.
+    /// </summary>
 
-	private void activatePlayer() {
-		resetPlayer();
-		gameObject.SetActive(true);
-		
-	}
+    [SerializeField] private Transform playerSpriteGroupTransform;
+	[SerializeField] private ParticleSystem deathParticles;
+	[SerializeField] private GameObject playerSpriteGroup;
+	[SerializeField] private GameObject player;
+	[SerializeField] private Spawner spawner;
+	[SerializeField] private RingSpawner ringSpawner;
+    private Vector3 initPosition;
+    public UnityEvent PlayerKilled;
 
-	private void OnCollisionEnter2D(Collision2D other) {
-		if (other.transform.tag == "Obstacle") {
-			gameObject.SetActive(false);
-            GameManager.Instance.GameOver();
-		}
-	}
 
-	private void OnTriggerEnter2D(Collider2D other) {
-		if (other.transform.tag == "Ring") {
-			// destroy ring and add score
-			Destroy(other.gameObject);
-			GameManager.Instance.CurrentScore += 1;
-		}
-	}
+    private void Start()
+    {
+        initPosition = player.transform.position;
+        GameManager.Instance.OnPlay.AddListener(resetPlayer);
+    }
+
+    private void activatePlayer()
+    {
+        
+        //gameObject.SetActive(true);
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.transform.tag == "Obstacle")
+        {
+            playerSpriteGroup.SetActive(false);
+			PlayerKilled.Invoke();
+			// move death particles to player position
+			deathParticles.transform.position = player.transform.position;
+			deathParticles.Play();
+			spawner.PauseObstacles();
+			ringSpawner.PauseRings();
+			GameManager.Instance.IsPlaying = false;
+            StartCoroutine(Pause(2f));
+			//gameObject.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.transform.tag == "Ring")
+        {
+            // destroy ring and add score
+            Destroy(other.gameObject);
+            GameManager.Instance.CurrentScore += 1;
+        }
+    }
     private void resetPlayer()
     {
-        playerSpriteGroup.localRotation = Quaternion.identity;
-		transform.position = initPosition;
+		// log out
+		Debug.Log("resetPlayer");
+		playerSpriteGroup.SetActive(true);
+        //playerSpriteGroupTransform.localRotation = Quaternion.identity;
+        player.transform.position = initPosition;
+		// set rotation to 0
+
+    }
+
+    private IEnumerator Pause(float seconds)
+    {
+        // Yield for one second
+        yield return new WaitForSeconds(seconds);
+
+        // After the delay, call the Game Over function
+        GameManager.Instance.GameOver();
+		
+		
     }
 }

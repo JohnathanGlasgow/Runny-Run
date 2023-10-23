@@ -14,6 +14,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float groundDistance = 0.1f;
     [SerializeField] private float jumpTime = 0.3f;
 
+
     private bool isGrounded = false;      // Flag to check if the player is grounded.
     private bool isJumping = false;       // Flag to check if the player is in a jump state.
     private float jumpTimer;              // Timer to control the maximum jump time.
@@ -67,6 +68,7 @@ public class PlayerMovementController : MonoBehaviour
             case InputActionPhase.Started:
                 if (isGrounded && jumpComplete)
                 {
+                    AudioManager.Instance.Play("Jump");
                     jumpComplete = false;
                     jumpTimer = 0;
                     isJumping = true;

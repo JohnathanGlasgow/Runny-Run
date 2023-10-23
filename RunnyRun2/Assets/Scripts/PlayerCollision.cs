@@ -10,8 +10,8 @@ public class PlayerCollision : MonoBehaviour
     /// This class is used for detecting collisions between the player and obstacles.
     /// It is attached to the Player game object.
     /// </summary>
-	    #region Singleton
 
+	#region Singleton
     public static PlayerCollision Instance;
 
     private void Awake()
@@ -19,15 +19,16 @@ public class PlayerCollision : MonoBehaviour
         if (Instance == null) Instance = this;
     }
     #endregion
+
     [SerializeField] private Transform playerSpriteGroupTransform;
-	[SerializeField] private ParticleSystem deathParticles;
-	[SerializeField] private GameObject playerSpriteGroup;
-	[SerializeField] private GameObject player;
-	[SerializeField] private Spawner spawner;
-	[SerializeField] private RingSpawner ringSpawner;
+    [SerializeField] private ParticleSystem deathParticles;
+    [SerializeField] private GameObject playerSpriteGroup;
+    [SerializeField] private GameObject player;
+    [SerializeField] private Spawner spawner;
+    [SerializeField] private RingSpawner ringSpawner;
     private Vector3 initPosition;
     public UnityEvent PlayerKilled;
-	
+
 
     private void Start()
     {
@@ -37,7 +38,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void activatePlayer()
     {
-        
+
         //gameObject.SetActive(true);
 
     }
@@ -47,15 +48,16 @@ public class PlayerCollision : MonoBehaviour
         if (other.transform.tag == "Obstacle")
         {
             playerSpriteGroup.SetActive(false);
-			PlayerKilled.Invoke();
-			// move death particles to player position
-			deathParticles.transform.position = player.transform.position;
-			deathParticles.Play();
-			spawner.PauseObstacles();
-			ringSpawner.PauseRings();
-			GameManager.Instance.IsPlaying = false;
+            PlayerKilled.Invoke();
+			AudioManager.Instance.Play("Die");
+            // move death particles to player position
+            deathParticles.transform.position = player.transform.position;
+            deathParticles.Play();
+            spawner.PauseObstacles();
+            ringSpawner.PauseRings();
+            GameManager.Instance.IsPlaying = false;
             StartCoroutine(Pause(2f));
-			//gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 
@@ -63,6 +65,7 @@ public class PlayerCollision : MonoBehaviour
     {
         if (other.transform.tag == "Ring")
         {
+			AudioManager.Instance.Play("CollectRing");
             // destroy ring and add score
             Destroy(other.gameObject);
             GameManager.Instance.CurrentScore += 1;
@@ -70,12 +73,12 @@ public class PlayerCollision : MonoBehaviour
     }
     private void resetPlayer()
     {
-		// log out
-		Debug.Log("resetPlayer");
-		playerSpriteGroup.SetActive(true);
+        // log out
+        Debug.Log("resetPlayer");
+        playerSpriteGroup.SetActive(true);
         //playerSpriteGroupTransform.localRotation = Quaternion.identity;
         player.transform.position = initPosition;
-		// set rotation to 0
+        // set rotation to 0
 
     }
 
@@ -88,16 +91,16 @@ public class PlayerCollision : MonoBehaviour
         GameManager.Instance.GameOver();
     }
 
-	public void FreezePlayerYConstraintPlayer(bool freezeY)
-	{
-		if (freezeY)
-		{
-			player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
-		}
-		else
-		{
-			player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-		}
-	}
+    public void FreezePlayerYConstraintPlayer(bool freezeY)
+    {
+        if (freezeY)
+        {
+            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
+        }
+        else
+        {
+            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
 
 }

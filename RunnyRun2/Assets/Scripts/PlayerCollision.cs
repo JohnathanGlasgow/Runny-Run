@@ -10,7 +10,15 @@ public class PlayerCollision : MonoBehaviour
     /// This class is used for detecting collisions between the player and obstacles.
     /// It is attached to the Player game object.
     /// </summary>
+	    #region Singleton
 
+    public static PlayerCollision Instance;
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+    }
+    #endregion
     [SerializeField] private Transform playerSpriteGroupTransform;
 	[SerializeField] private ParticleSystem deathParticles;
 	[SerializeField] private GameObject playerSpriteGroup;
@@ -19,7 +27,7 @@ public class PlayerCollision : MonoBehaviour
 	[SerializeField] private RingSpawner ringSpawner;
     private Vector3 initPosition;
     public UnityEvent PlayerKilled;
-
+	
 
     private void Start()
     {
@@ -78,7 +86,18 @@ public class PlayerCollision : MonoBehaviour
 
         // After the delay, call the Game Over function
         GameManager.Instance.GameOver();
-		
-		
     }
+
+	public void FreezePlayerYConstraintPlayer(bool freezeY)
+	{
+		if (freezeY)
+		{
+			player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
+		}
+		else
+		{
+			player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+		}
+	}
+
 }

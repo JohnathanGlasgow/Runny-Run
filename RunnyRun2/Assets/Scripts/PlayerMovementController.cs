@@ -68,7 +68,7 @@ public class PlayerMovementController : MonoBehaviour
             case InputActionPhase.Started:
                 if (isGrounded && jumpComplete)
                 {
-                    AudioManager.Instance.Play("Jump");
+                    SFXManager.Instance.Play("Jump");
                     jumpComplete = false;
                     jumpTimer = 0;
                     isJumping = true;

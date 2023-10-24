@@ -24,6 +24,7 @@ public class SettingsMenu : MonoBehaviour
     // ref to lens distortion
     private LensDistortion lensDistortion;
 
+    [SerializeField] private Slider sfxSlider;
 
 
     private void Start()
@@ -32,6 +33,12 @@ public class SettingsMenu : MonoBehaviour
         postProcessVolume.profile.TryGet(out bloom);
         postProcessVolume.profile.TryGet(out filmGrain);
         postProcessVolume.profile.TryGet(out lensDistortion);
+
+        // set the slider value to the current sfx level
+        sfxSlider.value = SFXManager.Instance.InitSFXLevel;
+
+        // log out the slider level
+        Debug.Log(sfxSlider.value);
     }
 
     public void BloomToggle(Toggle t) {

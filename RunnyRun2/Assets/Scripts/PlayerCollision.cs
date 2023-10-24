@@ -49,7 +49,7 @@ public class PlayerCollision : MonoBehaviour
         {
             playerSpriteGroup.SetActive(false);
             PlayerKilled.Invoke();
-			AudioManager.Instance.Play("Die");
+			SFXManager.Instance.Play("Die");
             // move death particles to player position
             deathParticles.transform.position = player.transform.position;
             deathParticles.Play();
@@ -65,7 +65,7 @@ public class PlayerCollision : MonoBehaviour
     {
         if (other.transform.tag == "Ring")
         {
-			AudioManager.Instance.Play("CollectRing");
+			SFXManager.Instance.Play("CollectRing");
             // destroy ring and add score
             Destroy(other.gameObject);
             GameManager.Instance.CurrentScore += 1;

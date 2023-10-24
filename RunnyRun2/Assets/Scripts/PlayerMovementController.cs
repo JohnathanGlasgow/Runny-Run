@@ -63,6 +63,7 @@ public class PlayerMovementController : MonoBehaviour
 
     public void OnInteraction(InputAction.CallbackContext context)
     {
+        if (GameManager.Instance.IsPlaying == false) return;
         switch (context.phase)
         {
             case InputActionPhase.Started:

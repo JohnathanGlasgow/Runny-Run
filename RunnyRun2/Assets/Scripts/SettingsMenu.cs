@@ -25,7 +25,7 @@ public class SettingsMenu : MonoBehaviour
     private LensDistortion lensDistortion;
 
     [SerializeField] private Slider sfxSlider;
-
+    [SerializeField] private Slider musicSlider;
 
     private void Start()
     {
@@ -36,6 +36,8 @@ public class SettingsMenu : MonoBehaviour
 
         // set the slider value to the current sfx level
         sfxSlider.value = SFXManager.Instance.InitSFXLevel;
+        // set the slider value to the current music level
+        musicSlider.value = MusicManager.Instance.InitVolume;
 
         // log out the slider level
         Debug.Log(sfxSlider.value);

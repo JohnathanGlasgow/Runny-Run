@@ -85,7 +85,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void onGameStart()
     {
-        PlayerCollision.Instance.FreezePlayerYConstraint(false);
+        //PlayerCollision.Instance.FreezePlayerYConstraint(false);
         // log out this call
         Debug.Log("onGameStart called");
         // enable player input

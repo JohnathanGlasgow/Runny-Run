@@ -40,8 +40,9 @@ public class SFXManager : MonoBehaviour
     #endregion
 
     [SerializeField] private List<AudioInfo> audioInfos = new List<AudioInfo>();
+
     // This is the initial overall SFX volume. This is what SFX slider in the settings menu is set to when the game starts.
-    public float InitSFXLevel { get; } = 0.25f;
+    public float InitSFXLevel = 0.25f;
 
     private void Start()
     {

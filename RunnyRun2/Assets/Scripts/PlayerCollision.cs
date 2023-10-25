@@ -47,6 +47,7 @@ public class PlayerCollision : MonoBehaviour
     {
         if (other.transform.tag == "Obstacle")
         {
+            FreezePlayerYConstraint(true);
             playerSpriteGroup.SetActive(false);
             PlayerKilled.Invoke();
 			SFXManager.Instance.Play("Die");
@@ -91,7 +92,7 @@ public class PlayerCollision : MonoBehaviour
         GameManager.Instance.GameOver();
     }
 
-    public void FreezePlayerYConstraintPlayer(bool freezeY)
+    public void FreezePlayerYConstraint(bool freezeY)
     {
         if (freezeY)
         {

@@ -22,4 +22,15 @@ public class MusicManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = InitVolume;
     }
+
+        public void skipToEnd(){
+                    // Calculate the time 3 seconds before the end
+            float skipTime = Mathf.Max(0, audioSource.clip.length - 3f);
+            
+            // Set the audio source time to the calculated skip time
+            audioSource.time = skipTime;
+            
+            // Play the audio from the new position
+            audioSource.Play();
+    }
 }

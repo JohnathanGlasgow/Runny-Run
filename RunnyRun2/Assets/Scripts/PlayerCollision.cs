@@ -47,6 +47,8 @@ public class PlayerCollision : MonoBehaviour
     {
         if (other.transform.tag == "Obstacle")
         {
+            // disable player collider
+            gameObject.GetComponent<Collider2D>().enabled = false;
             //FreezePlayerYConstraint(true);
             playerSpriteGroup.SetActive(false);
             PlayerKilled.Invoke();

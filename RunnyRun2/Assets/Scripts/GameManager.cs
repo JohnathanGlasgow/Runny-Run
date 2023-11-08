@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
             SaveSystem.Save("save", Data);
         }
         IsPlaying = false;
-        
+
     }
 
     public void StartGame()
@@ -65,8 +65,11 @@ public class GameManager : MonoBehaviour
         OnPlay.Invoke();
         IsPlaying = true;
         CurrentScore = 0;
+        player.GetComponent<Collider2D>().enabled = true;
         animator.SetBool("IsRunning", true);
-    }   
+        // enable player collider
+
+    }
 
     public string PrettyScore(float score) => Mathf.RoundToInt(score).ToString();
 }

@@ -59,6 +59,12 @@ public class PlayerMovementController : MonoBehaviour
             // Jump time limit has been reached, so the player should stop jumping.
             isJumping = false;
         }
+
+        // temp fix for weird death issue
+        if (transform.position.y < -5)
+        {
+            transform.position = new Vector3(-6.29f, 3.364f, 0);
+        }
     }
 
     public void OnInteraction(InputAction.CallbackContext context)
@@ -104,6 +110,10 @@ public class PlayerMovementController : MonoBehaviour
         animator.SetBool("IsRunning", false);
         // log out the animator bool
         Debug.Log("animator.IsRunning: " + animator.GetBool("IsRunning"));
+        // isGrounded = true;
+        // isJumping = false;
+        // // disable player rigidbody
+        // rb.velocity = Vector2.zero;
     }
 }
 

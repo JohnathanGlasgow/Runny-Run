@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    public GameObject Player;
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -60,6 +62,10 @@ public class GameManager : MonoBehaviour
             SaveSystem.Save("save", Data);
         }
         IsPlaying = false;
+        DifficultyTier = 1;
+
+        // Fix Player at 0
+        player.transform.position = new Vector3(0, 0, 0);
 
     }
 
@@ -72,6 +78,9 @@ public class GameManager : MonoBehaviour
         // enable player collider
         player.GetComponent<Collider2D>().enabled = true;
         animator.SetBool("IsRunning", true);
+
+
+
     }
 
     public string PrettyScore(float score) => Mathf.RoundToInt(score).ToString();

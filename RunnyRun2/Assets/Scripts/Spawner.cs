@@ -1,6 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using UnityEngine;
+
+
+/// <summary>
+/// This helper class contains an obstacle prefab and its difficulty tier.
+/// </summary>
+[Serializable]
+public class ObstacleInfo
+{
+    public GameObject ObstaclePrefab;
+    public int DifficultyTier = 1;
+}
 
 /// <summary>
 /// This class is used for spawning obstacles.
@@ -8,7 +22,7 @@ using UnityEngine;
 /// </summary>
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] obstaclePrefabs;
+    [SerializeField] private ObstacleInfo[] obstaclePrefabs;
     [SerializeField] private Transform obstacleParent;
 
     [SerializeField] private float obstacleSpawnTime = 3f;
@@ -17,9 +31,7 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private float obstacleSpeed = 4f;
     [SerializeField][Range(0, 1)] private float obstacleSpeedFactor = 0.2f;
-    public float FactoredObstacleSpeed { get; set;}
-
-    
+    public float FactoredObstacleSpeed { get; set; }
     private float timeAlive;
     private float timeUntilObstacleSpawn;
 
@@ -57,7 +69,7 @@ public class Spawner : MonoBehaviour
     public void PauseObstacles()
     {
         FactoredObstacleSpeed = 0f;
-        foreach(Transform child in obstacleParent)
+        foreach (Transform child in obstacleParent)
         {
             child.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
@@ -65,7 +77,7 @@ public class Spawner : MonoBehaviour
 
     private void ClearObstacles()
     {
-        foreach(Transform child in obstacleParent)
+        foreach (Transform child in obstacleParent)
         {
             Destroy(child.gameObject);
         }
@@ -90,9 +102,19 @@ public class Spawner : MonoBehaviour
     {
         if (FactoredObstacleSpeed < 5f) return;
 
-        GameObject obstacleToSpawn = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
-
-        GameObject obstacle = Instantiate(obstacleToSpawn, transform.position, Quaternion.identity);
+        // GameObject obstacleToSpawn = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
+        // get obstacleToSpawn based on difficulty tier
+        int difficultyTier = GameManager.Instance.DifficultyTier;
+        List<ObstacleInfo> possibleObstacles = new List<ObstacleInfo>();
+        foreach (ObstacleInfo obstacleInfo in obstaclePrefabs)
+        {
+            if (obstacleInfo.DifficultyTier <= difficultyTier)
+            {
+                possibleObstacles.Add(obstacleInfo);
+            }
+        }
+        ObstacleInfo obstacleToSpawn = possibleObstacles[UnityEngine.Random.Range(0, possibleObstacles.Count)];
+        GameObject obstacle = Instantiate(obstacleToSpawn.ObstaclePrefab, transform.position, Quaternion.identity);
         obstacle.transform.parent = obstacleParent;
 
         Rigidbody2D obstacleRB = obstacle.GetComponent<Rigidbody2D>();

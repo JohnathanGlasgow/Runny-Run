@@ -1999,10 +1999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePrefabs:
-  - {fileID: 7279003999673194491, guid: ae7e6a363d5e74177a38bfaff73f0a7a, type: 3}
-  - {fileID: 5241972158656893170, guid: 20319a3bb4e8a47a4938ad7fa5b440bc, type: 3}
-  - {fileID: 4884785170225990534, guid: 1358ee1474a2a4485960433ffc6615a3, type: 3}
-  - {fileID: 7279003999673194491, guid: a55b0683860b34097af31f48eb55ae08, type: 3}
+  - {fileID: 0}
   obstacleParent: {fileID: 1935760118}
   obstacleSpawnTime: 3
   obstacleSpawnTimeFactor: 0.1
@@ -4795,6 +4792,7 @@ MonoBehaviour:
   OnPlay:
     m_PersistentCalls:
       m_Calls: []
+  DifficultyTier: 1
 --- !u!4 &1193661575
 Transform:
   m_ObjectHideFlags: 0
@@ -6714,7 +6712,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 30a71c6fd987a4b3d8f4abb3e7e29f17, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0

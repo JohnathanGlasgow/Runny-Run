@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public bool IsPlaying = false;
     public UnityEvent OnGameOver;
     public UnityEvent OnPlay;
+    public int DifficultyTier = 1;
 
     private UIManager uiManager;
 
@@ -42,7 +43,10 @@ public class GameManager : MonoBehaviour
     {
         if (IsPlaying)
         {
-            //CurrentScore += Time.deltaTime;
+            if (CurrentScore > 0)
+            {
+                DifficultyTier = Mathf.FloorToInt(CurrentScore / 10) + 1;
+            }
         }
     }
     #endregion
@@ -65,10 +69,9 @@ public class GameManager : MonoBehaviour
         OnPlay.Invoke();
         IsPlaying = true;
         CurrentScore = 0;
+        // enable player collider
         player.GetComponent<Collider2D>().enabled = true;
         animator.SetBool("IsRunning", true);
-        // enable player collider
-
     }
 
     public string PrettyScore(float score) => Mathf.RoundToInt(score).ToString();

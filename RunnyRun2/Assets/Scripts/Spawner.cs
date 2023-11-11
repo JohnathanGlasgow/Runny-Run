@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnPlay.AddListener(ClearObstacles);
+        GameManager.Instance.OnPlay.AddListener(clearObstacles);
         GameManager.Instance.OnPlay.AddListener(resetFactors);
 
         timeUntilObstacleSpawn = obstacleSpawnTime;
@@ -49,23 +49,31 @@ public class Spawner : MonoBehaviour
         {
             timeAlive += Time.deltaTime;
 
-            CalculateFactors();
+            calculateFactors();
 
-            SpawnLoop();
+            spawnLoop();
         }
     }
 
-    private void SpawnLoop()
+    /// <summary>
+    /// This method is used for spawning obstacles.
+    /// It checks if the time until the next obstacle spawn has been reached.
+    /// If it has, it spawns an obstacle and resets the time until the next spawn.
+    /// </summary>
+    private void spawnLoop()
     {
         timeUntilObstacleSpawn += Time.deltaTime;
 
         if (timeUntilObstacleSpawn >= factoredObstacleSpawnTime)
         {
-            Spawn();
+            spawn();
             timeUntilObstacleSpawn = 0f;
         }
     }
 
+    /// <summary>
+    /// This method is used for pausing the obstacles.
+    /// </summary>
     public void PauseObstacles()
     {
         FactoredObstacleSpeed = 0f;
@@ -75,7 +83,10 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void ClearObstacles()
+    /// <summary>
+    /// This method is used for destroying all bstacles.
+    /// </summary>
+    private void clearObstacles()
     {
         foreach (Transform child in obstacleParent)
         {
@@ -83,13 +94,18 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void CalculateFactors()
+    /// <summary>
+    /// This method is used for calculating the factored obstacle spawn time and speed.
+    /// </summary>
+    private void calculateFactors()
     {
         factoredObstacleSpawnTime = obstacleSpawnTime / Mathf.Pow(timeAlive, obstacleSpawnTimeFactor);
         FactoredObstacleSpeed = obstacleSpeed * Mathf.Pow(timeAlive, obstacleSpeedFactor);
-
     }
 
+    /// <summary>
+    /// This method is used for resetting the time alive and factored obstacle spawn time and speed.
+    /// </summary>
     private void resetFactors()
     {
         timeAlive = 1f;
@@ -98,12 +114,11 @@ public class Spawner : MonoBehaviour
 
     }
 
-    private void Spawn()
+    private void spawn()
     {
         if (FactoredObstacleSpeed < 5f) return;
 
-        // GameObject obstacleToSpawn = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
-        // get obstacleToSpawn based on difficulty tier
+        // Get obstacleToSpawn candidates based on difficulty tier
         int difficultyTier = GameManager.Instance.DifficultyTier;
         List<ObstacleInfo> possibleObstacles = new List<ObstacleInfo>();
         foreach (ObstacleInfo obstacleInfo in obstaclePrefabs)
@@ -113,12 +128,13 @@ public class Spawner : MonoBehaviour
                 possibleObstacles.Add(obstacleInfo);
             }
         }
+        // Randomly select an obstacle from the candidates and spawn it
         ObstacleInfo obstacleToSpawn = possibleObstacles[UnityEngine.Random.Range(0, possibleObstacles.Count)];
         GameObject obstacle = Instantiate(obstacleToSpawn.ObstaclePrefab, transform.position, Quaternion.identity);
         obstacle.transform.parent = obstacleParent;
 
+        // Find its Rigidbody2D and set its velocity to the factored obstacle speed
         Rigidbody2D obstacleRB = obstacle.GetComponent<Rigidbody2D>();
-
         obstacleRB.velocity = Vector2.left * FactoredObstacleSpeed;
     }
 }

@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gameOverScoreUI;
     [SerializeField] private TextMeshProUGUI gameOverHighScoreUI;
     [SerializeField] private TextMeshProUGUI startMenuHighScoreUI;
-    GameManager gm;
+    private GameManager gm;
 
     private void Start()
     {
@@ -30,14 +30,19 @@ public class UIManager : MonoBehaviour
         gm.OnGameOver.AddListener(ActivateGameOverUI);  
     }
 
+    /// <summary>
+    /// Start the game when the play button is pressed.
+    /// </summary>
     public void PlayButtonHandler()
     {
         gm.StartGame();
     }
 
+    /// <summary>
+    /// This method is used for activating the game over UI.
+    /// </summary>
     public void ActivateGameOverUI()
     {
-        startMenuHighScoreUI.text = "Highscore: " + gm.PrettyScore(gm.HighScore);
         gameOverUI.SetActive(true);
         gameOverScoreUI.text = "Score: " + gm.PrettyScore(gm.CurrentScore);
         if (gm.CurrentScore > gm.HighScore)
@@ -51,14 +56,18 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method updates the high score in the start menu.
+    /// </summary>
+    /// <param name="score">The high score to display.</param>
     public void UpdateStartMenuHighScore(string score)
     {
         startMenuHighScoreUI.text = "Highscore: " + score;
     }
 
+
     private void OnGUI()
     {
         scoreUI.text = gm.PrettyScore(gm.CurrentScore);
     }
-
 }

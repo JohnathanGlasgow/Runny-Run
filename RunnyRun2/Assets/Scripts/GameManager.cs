@@ -24,21 +24,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject player;
     public float CurrentScore;
-    public Data Data;
     public bool IsPlaying = false;
     public UnityEvent OnGameOver;
     public UnityEvent OnPlay;
     public int DifficultyTier = 1;
-
+    public int HighScore;
     private UIManager uiManager;
 
     # region MonoBehaviour
     private void Start()
     {
         uiManager = UIManager.Instance;
-        string loadedData = SaveSystem.Load("save");
-        Data = (loadedData != null) ? JsonUtility.FromJson<Data>(loadedData) : new Data();
-        uiManager.UpdateStartMenuHighScore();
+        HighScore = PlayerPrefs.GetInt("HighScore", 0);
+        uiManager.UpdateStartMenuHighScore(PrettyScore(HighScore));
     }
 
     private void Update()
@@ -56,16 +54,16 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         OnGameOver.Invoke();
-        if (CurrentScore > Data.HighScore)
+        if (CurrentScore > HighScore)
         {
-            Data.HighScore = CurrentScore;
-            SaveSystem.Save("save", Data);
+            HighScore = Mathf.RoundToInt(CurrentScore);
+            PlayerPrefs.SetInt("HighScore", Mathf.RoundToInt(CurrentScore));
         }
         IsPlaying = false;
         DifficultyTier = 1;
 
         // Fix Player at 0
-        player.transform.position = new Vector3(0, 0, 0);
+        // player.transform.position = new Vector3(0, 0, 0);
 
     }
 
@@ -78,9 +76,6 @@ public class GameManager : MonoBehaviour
         // enable player collider
         player.GetComponent<Collider2D>().enabled = true;
         animator.SetBool("IsRunning", true);
-
-
-
     }
 
     public string PrettyScore(float score) => Mathf.RoundToInt(score).ToString();

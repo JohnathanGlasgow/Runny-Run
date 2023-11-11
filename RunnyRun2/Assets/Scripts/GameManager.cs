@@ -21,17 +21,18 @@ public class GameManager : MonoBehaviour
         if (Instance == null) Instance = this;
     }
     #endregion
-    [SerializeField] private Animator animator;
-    [SerializeField] private GameObject player;
+
     public float CurrentScore;
     public bool IsPlaying = false;
     public UnityEvent OnGameOver;
     public UnityEvent OnPlay;
-    public int DifficultyTier = 1;
-    public int HighScore;
+    public int DifficultyTier { get; private set; } = 1;
+    public int DifficultyThreshold { get; private set; } = 10;
+    public int HighScore { get; private set; }
     private UIManager uiManager;
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject player;
 
-    # region MonoBehaviour
     private void Start()
     {
         uiManager = UIManager.Instance;
@@ -43,17 +44,22 @@ public class GameManager : MonoBehaviour
     {
         if (IsPlaying)
         {
+            // Update difficulty tier if threshold has been reached
             if (CurrentScore > 0)
             {
-                DifficultyTier = Mathf.FloorToInt(CurrentScore / 10) + 1;
+                DifficultyTier = Mathf.FloorToInt(CurrentScore / DifficultyThreshold) + 1;
             }
         }
     }
-    #endregion
 
+    /// <summary>
+    /// This method is called when the player dies.
+    /// It invokes the OnGameOver event.
+    /// </summary>
     public void GameOver()
     {
         OnGameOver.Invoke();
+        // Update high score if current score is higher
         if (CurrentScore > HighScore)
         {
             HighScore = Mathf.RoundToInt(CurrentScore);
@@ -61,23 +67,28 @@ public class GameManager : MonoBehaviour
         }
         IsPlaying = false;
         DifficultyTier = 1;
-
-        // Fix Player at 0
-        // player.transform.position = new Vector3(0, 0, 0);
-
     }
 
+    /// <summary>
+    /// This method is called when the player starts the game.
+    /// It invokes the OnPlay event.
+    /// </summary>
     public void StartGame()
     {
         player.SetActive(true);
         OnPlay.Invoke();
         IsPlaying = true;
         CurrentScore = 0;
-        // enable player collider
+        // Reenable player collider
         player.GetComponent<Collider2D>().enabled = true;
         animator.SetBool("IsRunning", true);
     }
 
+    /// <summary>
+    /// This method returns a string representation of the score.
+    /// </summary>
+    /// <param name="score">The score to be converted to a string.</param>
+    /// <returns>A string representation of the score.</returns>
     public string PrettyScore(float score) => Mathf.RoundToInt(score).ToString();
 }
 

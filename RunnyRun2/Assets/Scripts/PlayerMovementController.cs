@@ -59,12 +59,6 @@ public class PlayerMovementController : MonoBehaviour
             // Jump time limit has been reached, so the player should stop jumping.
             isJumping = false;
         }
-
-        // temp fix for weird death issue
-        if (transform.position.y < -5)
-        {
-            transform.position = new Vector3(-6.29f, 3.364f, 0);
-        }
     }
 
     public void OnInteraction(InputAction.CallbackContext context)
@@ -91,29 +85,25 @@ public class PlayerMovementController : MonoBehaviour
 
     private void onGameStart()
     {
-        //PlayerCollision.Instance.FreezePlayerYConstraint(false);
-        // log out this call
-        Debug.Log("onGameStart called");
-        // enable player input
         playerInput.enabled = true;
-        // animator.SetBool("IsRunning", true);
-        // // log out the animator bool
-        // Debug.Log("animator.IsRunning: " + animator.GetBool("IsRunning"));
     }
 
     private void onGameOver()
     {
-        // log out this call
-        Debug.Log("onGameOver called");
-        // disable player input
         playerInput.enabled = false;
+
+
+        reset();
         animator.SetBool("IsRunning", false);
-        // log out the animator bool
-        Debug.Log("animator.IsRunning: " + animator.GetBool("IsRunning"));
-        // isGrounded = true;
-        // isJumping = false;
-        // // disable player rigidbody
-        // rb.velocity = Vector2.zero;
+    }
+
+    private void reset()
+    {
+       // reset all the fields to their initial values
+         jumpTimer = 0;
+            isJumping = false;
+            isGrounded = false;
+            jumpComplete = false;
     }
 }
 

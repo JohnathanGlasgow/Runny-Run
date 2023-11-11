@@ -11,7 +11,7 @@ public class PlayerCollision : MonoBehaviour
     /// It is attached to the Player game object.
     /// </summary>
 
-	#region Singleton
+    #region Singleton
     public static PlayerCollision Instance;
 
     private void Awake()
@@ -49,10 +49,10 @@ public class PlayerCollision : MonoBehaviour
         {
             // disable player collider
             gameObject.GetComponent<Collider2D>().enabled = false;
-            //FreezePlayerYConstraint(true);
+            FreezePlayerYConstraint(true);
             playerSpriteGroup.SetActive(false);
             PlayerKilled.Invoke();
-			SFXManager.Instance.Play("Die");
+            SFXManager.Instance.Play("Die");
             // move death particles to player position
             deathParticles.transform.position = player.transform.position;
             deathParticles.Play();
@@ -68,7 +68,7 @@ public class PlayerCollision : MonoBehaviour
     {
         if (other.transform.tag == "Ring")
         {
-			SFXManager.Instance.Play("CollectRing");
+            SFXManager.Instance.Play("CollectRing");
             // destroy ring and add score
             Destroy(other.gameObject);
             GameManager.Instance.CurrentScore += 1;
@@ -79,9 +79,10 @@ public class PlayerCollision : MonoBehaviour
         // log out
         Debug.Log("resetPlayer");
         playerSpriteGroup.SetActive(true);
-        //playerSpriteGroupTransform.localRotation = Quaternion.identity;
+        // //playerSpriteGroupTransform.localRotation = Quaternion.identity;
         player.transform.position = initPosition;
         // set rotation to 0
+        FreezePlayerYConstraint(false);
 
     }
 

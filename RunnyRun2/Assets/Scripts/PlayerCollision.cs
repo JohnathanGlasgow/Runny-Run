@@ -36,19 +36,17 @@ public class PlayerCollision : MonoBehaviour
         GameManager.Instance.OnPlay.AddListener(resetPlayer);
     }
 
-    private void activatePlayer()
-    {
-
-        //gameObject.SetActive(true);
-
-    }
-
+    /// <summary>
+    /// This method is called when the player collides with an obstacle.
+    /// </summary>
+    /// <param name="other">The collider of the object the player collided with.</param>
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.transform.tag == "Obstacle")
         {
             // disable player collider
             gameObject.GetComponent<Collider2D>().enabled = false;
+            // Freezing the player's Y position prevents them from falling through the ground
             FreezePlayerYConstraint(true);
             playerSpriteGroup.SetActive(false);
             PlayerKilled.Invoke();
@@ -56,37 +54,45 @@ public class PlayerCollision : MonoBehaviour
             // move death particles to player position
             deathParticles.transform.position = player.transform.position;
             deathParticles.Play();
+            // waitThenGameOver movement of obstacles and rings
             spawner.PauseObstacles();
             ringSpawner.PauseRings();
             GameManager.Instance.IsPlaying = false;
-            StartCoroutine(Pause(2f));
-            //gameObject.SetActive(false);
+            // pause for dramatic effect
+            StartCoroutine(waitThenGameOver(2f));
         }
     }
 
+    /// <summary>
+    /// This method is called when the player collides with a ring.
+    /// </summary>
+    /// <param name="other">The collider of the object the player collided with.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.tag == "Ring")
         {
             SFXManager.Instance.Play("CollectRing");
-            // destroy ring and add score
+            // Destroy ring and add score
             Destroy(other.gameObject);
             GameManager.Instance.CurrentScore += 1;
         }
     }
+    
+    /// <summary>
+    /// Reset the player's position and re-enable the sprite.
+    /// </summary>
     private void resetPlayer()
     {
-        // log out
-        Debug.Log("resetPlayer");
         playerSpriteGroup.SetActive(true);
-        // //playerSpriteGroupTransform.localRotation = Quaternion.identity;
         player.transform.position = initPosition;
-        // set rotation to 0
         FreezePlayerYConstraint(false);
-
     }
 
-    private IEnumerator Pause(float seconds)
+    /// <summary>
+    /// This method triggers the Game Over event after a delay.
+    /// </summary>
+    /// <param name="seconds">The number of seconds to wait before triggering the Game Over event.</param>
+    private IEnumerator waitThenGameOver(float seconds)
     {
         // Yield for one second
         yield return new WaitForSeconds(seconds);
@@ -95,6 +101,10 @@ public class PlayerCollision : MonoBehaviour
         GameManager.Instance.GameOver();
     }
 
+    /// <summary>
+    /// This method freezes the player's Y position, or unfreezes it.
+    /// </summary>
+    /// <param name="freezeY">Whether to freeze the player's Y position.</param>
     public void FreezePlayerYConstraint(bool freezeY)
     {
         if (freezeY)

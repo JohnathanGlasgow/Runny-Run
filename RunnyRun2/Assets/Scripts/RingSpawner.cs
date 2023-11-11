@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class is used for spawning rings.
+/// </summary>
+
 public class RingSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject ringPrefab;
@@ -13,31 +17,32 @@ public class RingSpawner : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.OnPlay.AddListener(ClearRings);
+        GameManager.Instance.OnPlay.AddListener(clearRings);
     }
-    // Update is called once per frame
+
     void Update()
     {
-        // if the game is playing
         if (GameManager.Instance.IsPlaying)
         {
-            // if the spawn timer has exceeded the spawn rate
+            // If the spawn timer has exceeded the spawn rate
             if (spawnTimer >= spawnRate)
             {
-                // spawn a ring
+                // Spawn a ring
                 spawnRing();
-                // reset the spawn timer
+                // Reset the spawn timer
                 spawnTimer = 0f;
             }
             else
             {
-                // increment the spawn timer
+                // Increment the spawn timer
                 spawnTimer += Time.deltaTime;
             }
         }
     }
 
-
+    /// <summary>
+    /// This method spawns a ring at a random spawn point.
+    /// </summary>
     private void spawnRing()
     {
         // Get a random spawn point
@@ -56,7 +61,10 @@ public class RingSpawner : MonoBehaviour
         rB.velocity = Vector2.left * ringSpeed;
     }
 
-    private void ClearRings()
+    /// <summary>
+    /// This method clears all rings from the scene.
+    /// </summary>
+    private void clearRings()
     {
         foreach(Transform child in ringParent)
         {
@@ -64,6 +72,9 @@ public class RingSpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method pauses all rings.
+    /// </summary>
     public void PauseRings()
     {
         foreach(Transform child in ringParent)

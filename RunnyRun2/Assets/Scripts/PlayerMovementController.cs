@@ -2,11 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// This class is used for controlling the player's movement.
+/// It is attached to the Player game object.
+/// Inputs are handled using the new Input System.
+/// </summary>
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
-    // player input component
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private LayerMask groundLayer;
@@ -14,18 +18,18 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float groundDistance = 0.1f;
     [SerializeField] private float jumpTime = 0.3f;
 
-
-    private bool isGrounded = false;      // Flag to check if the player is grounded.
-    private bool isJumping = false;       // Flag to check if the player is in a jump state.
-    private float jumpTimer;              // Timer to control the maximum jump time.
-
+    // Flag to check if the player is grounded.
+    private bool isGrounded = false;
+    // Flag to check if the player is in a jump state.    
+    private bool isJumping = false;
+    // Timer to control the maximum jump time.       
+    private float jumpTimer;
+    // Flag to check if the player has completed a jump.
     private bool jumpComplete;
     private GameManager gameManager;
     private InputAction jumpAction;
 
-    // listen for onplay event from game manager
-    // when onplay event is called, set the animator bool "isRunning" to true
-    // when ongameover event is called, set the animator bool "isRunning" to false
+
     private void Start()
     {
         gameManager = GameManager.Instance;
@@ -61,11 +65,15 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method is callled when the input system detects input.
     public void OnInteraction(InputAction.CallbackContext context)
     {
+        // If the game is not playing, do nothing.
         if (GameManager.Instance.IsPlaying == false) return;
         switch (context.phase)
         {
+            // If the jump button is pressed, and the player is on the ground, start the jump.
             case InputActionPhase.Started:
                 if (isGrounded && jumpComplete)
                 {
@@ -77,33 +85,41 @@ public class PlayerMovementController : MonoBehaviour
                     rb.velocity = Vector2.up * jumpForce;
                 }
                 break;
+            // If the jump button is released, stop the jump.
             case InputActionPhase.Canceled:
                 isJumping = false;
                 break;
         }
     }
 
+    /// <summary>
+    /// Handle the game start event.
+    /// </summary>
     private void onGameStart()
     {
         playerInput.enabled = true;
     }
 
+    /// <summary>
+    /// Handle the game over event.
+    /// </summary>
     private void onGameOver()
     {
         playerInput.enabled = false;
-
-
         reset();
         animator.SetBool("IsRunning", false);
     }
 
+    /// <summary>
+    /// This method resets the fields that govern the player's jump.
+    /// </summary>
     private void reset()
     {
-       // reset all the fields to their initial values
-         jumpTimer = 0;
-            isJumping = false;
-            isGrounded = false;
-            jumpComplete = false;
+        // reset all the fields to their initial values
+        jumpTimer = 0;
+        isJumping = false;
+        isGrounded = false;
+        jumpComplete = false;
     }
 }
 

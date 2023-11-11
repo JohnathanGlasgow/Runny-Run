@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class is used for managing the music.
+/// </summary>
 public class MusicManager : MonoBehaviour
 {
     #region Singleton
@@ -23,14 +26,19 @@ public class MusicManager : MonoBehaviour
         audioSource.volume = InitVolume;
     }
 
-        public void skipToEnd(){
-                    // Calculate the time 3 seconds before the end
-            float skipTime = Mathf.Max(0, audioSource.clip.length - 3f);
-            
-            // Set the audio source time to the calculated skip time
-            audioSource.time = skipTime;
-            
-            // Play the audio from the new position
-            audioSource.Play();
+    /// <summary>
+    /// This method skips to the end of the song.
+    /// This is for ensuring the loop is seamless.
+    /// </summary>
+    public void skipToEnd()
+    {
+        // Calculate the time 3 seconds before the end
+        float skipTime = Mathf.Max(0, audioSource.clip.length - 3f);
+
+        // Set the audio source time to the calculated skip time
+        audioSource.time = skipTime;
+
+        // Play the audio from the new position
+        audioSource.Play();
     }
 }

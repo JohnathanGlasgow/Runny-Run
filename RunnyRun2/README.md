@@ -2,11 +2,14 @@
 **A game by Johnathan Glasgow**
 
 ### Play Store link
-*Note that the game is still under Google review but is open for internal testing*
-[Download the game here](https://play.google.com/apps/internaltest/4701531107093448820)
+The game is still under review but the public link seems as though it is working:
+[Public Play Store Listing](https://play.google.com/store/apps/details?id=com.banjaxstudio.runnyrun&hl=en-US&ah=_NAjoPYVniMT1bMSRPZSgkhp51M)
+
+If for whatever reason that doesn't work then the internal testing version should instead:
+[Internal Testing Listing](https://play.google.com/apps/internaltest/4701531107093448820)
 
 ### Concept and Genre
-This is a simple endless runner type game
+This is a simple endless runner type game.
 
 ### Gameplay Loop
 The gameplay revolves around collecting rings while avoiding obstacles. The player may attempt to beat their high score. As the game progresses, more difficult obstacles appear. They also move faster as the game progresses.
@@ -21,4 +24,8 @@ The game has vibrant graphics reminiscient of 90's futurism.
 The SFX were created by Dominic Braun and are available freely [here](https://dominik-braun.net/retro-sounds/).
 
 ### Bugs
-There is a bug where the player will occasionally glitch out when resetting. This only occurs on the Android release of the game.
+As of writing there are no known bugs.
+
+### Earlier Version
+This project is a continuation of a project begun in [this repo](https://github.com/JohnathanGlasgow/ID721-Mobile-Projects/tree/main/RunnyRun).
+Please see [those commits](https://github.com/JohnathanGlasgow/ID721-Mobile-Projects/commits/main/RunnyRun) for more info about the early stages of this project.

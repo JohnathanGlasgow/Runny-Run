@@ -4992,11 +4992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  animator: {fileID: 694937197}
-  player: {fileID: 694937193}
   CurrentScore: 0
-  Data:
-    HighScore: 0
   IsPlaying: 0
   OnGameOver:
     m_PersistentCalls:
@@ -5004,7 +5000,8 @@ MonoBehaviour:
   OnPlay:
     m_PersistentCalls:
       m_Calls: []
-  DifficultyTier: 1
+  animator: {fileID: 694937197}
+  player: {fileID: 694937193}
 --- !u!4 &1193661575
 Transform:
   m_ObjectHideFlags: 0
@@ -13070,6 +13067,8 @@ ParticleSystem:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1437402159}
+  - {fileID: 1764365444}
   - {fileID: 474186013}
   - {fileID: 2124948479}
   - {fileID: 694937194}
@@ -13086,5 +13085,3 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1739115480}
   - {fileID: 1227364278}
-  - {fileID: 1764365444}
-  - {fileID: 1437402159}

@@ -55,4 +55,8 @@ This is the gold ring model I used:
 
 ["Gold Ring"](https://skfb.ly/6Z6ZX) by Donjuan301 is licensed under [Creative Commons Attribution](http://creativecommons.org/licenses/by/4.0/).
 
+A presentation outlining the game and development process is available [here](https://otagopoly-my.sharepoint.com/:v:/g/personal/glasgjg1_student_op_ac_nz/Edjj2M72TwJBpI-4sGQp7iQBvhg4q9xQurfBXjpbzseipw?e=BXIxyO)
+
+
+
 
